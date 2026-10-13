@@ -7,6 +7,11 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} ${req.method} ${req.url}`);
+  next();
+});
+
 const BASES = { bin: 2, dec: 10, hex: 16 };
 const PATTERNS = { bin: /^[01]+$/, dec: /^[0-9]+$/, hex: /^[0-9a-f]+$/i };
 const PREFIXES = { bin: '0b', hex: '0x' };
@@ -35,4 +40,10 @@ app.post('/api/convert', (req, res) => {
   res.json({ input: value, from, to, result });
 });
 
+app.get('/live', (req, res) => res.sendStatus(200));
+app.get('/ready', (req, res) => res.sendStatus(200));
+
+
 app.listen(PORT, () => console.log(`Converter running on http://localhost:${PORT}`));
+
+
