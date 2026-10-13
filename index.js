@@ -35,4 +35,10 @@ app.post('/api/convert', (req, res) => {
   res.json({ input: value, from, to, result });
 });
 
+app.get('/live', (req, res) => res.sendStatus(200));
+app.get('/ready', (req, res) => res.sendStatus(200));
+
+
 app.listen(PORT, () => console.log(`Converter running on http://localhost:${PORT}`));
+
+
