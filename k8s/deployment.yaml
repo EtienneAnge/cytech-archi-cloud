@@ -27,15 +27,15 @@ spec:
             memory: "128Mi"
             cpu: "250m"
         readinessProbe:
-      httpGet:
-        path: /ready 
-        port: 80
-      initialDelaySeconds: 5  
-      periodSeconds: 5        
-      failureThreshold: 2     
-      livenessProbe:
-      httpGet:
-        path: /live
-        port: 80
-      initialDelaySeconds: 15 
-      failureThreshold: 3
+          httpGet:
+            path: /ready 
+            port: 80
+          initialDelaySeconds: 5  
+          periodSeconds: 5        
+          failureThreshold: 2     
+        livenessProbe:
+          httpGet:
+            path: /live
+            port: 80
+          initialDelaySeconds: 15 
+          failureThreshold: 3
