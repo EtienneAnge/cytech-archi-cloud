@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: base-converter-deployment
+  labels:
+    app: base-converter
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: base-converter
+  template:
+    metadata:
+      labels:
+        app: base-converter
+    spec:
+      containers:
+      - name: base-converter
+        image: etienneange/base-converter:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "250m"
+        readinessProbe:
+      httpGet:
+        path: /ready 
+        port: 80
+      initialDelaySeconds: 5  
+      periodSeconds: 5        
+      failureThreshold: 2     
+      livenessProbe:
+      httpGet:
+        path: /live
+        port: 80
+      initialDelaySeconds: 15 
+      failureThreshold: 3
