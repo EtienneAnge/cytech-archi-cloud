@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Base Converter</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #f4f6f8; display: flex; justify-content: center; padding: 40px 16px; }
+    .card { background: #fff; padding: 24px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,.08); width: 100%; max-width: 420px; }
+    h1 { margin-top: 0; font-size: 1.4rem; }
+    label { display: block; margin: 12px 0 4px; font-weight: 600; }
+    input, select, button { width: 100%; padding: 10px; font-size: 1rem; box-sizing: border-box; border-radius: 6px; border: 1px solid #ccc; }
+    .row { display: flex; gap: 8px; align-items: end; }
+    .row > div { flex: 1; }
+    #swap { width: auto; cursor: pointer; }
+    button[type=submit] { margin-top: 16px; background: #2563eb; color: #fff; border: none; cursor: pointer; }
+    #result { margin-top: 16px; padding: 12px; background: #f1f5f9; border-radius: 6px; word-break: break-all; font-family: monospace; min-height: 1.2em; }
+    .error { color: #b91c1c; }
+  </style>
+</head>
+<body>
+  <form class="card" id="form">
+    <h1>Binary / Hex ⇄ Decimal</h1>
+    <label for="value">Value</label>
+    <input id="value" placeholder="e.g. 1010, FF, 255" required>
+    <div class="row">
+      <div>
+        <label for="from">From</label>
+        <select id="from">
+          <option value="bin">Binary (2)</option>
+          <option value="hex">Hexadecimal (16)</option>
+          <option value="dec">Decimal (10)</option>
+        </select>
+      </div>
+      <button type="button" id="swap" title="Swap">⇄</button>
+      <div>
+        <label for="to">To</label>
+        <select id="to">
+          <option value="dec">Decimal (10)</option>
+          <option value="bin">Binary (2)</option>
+          <option value="hex">Hexadecimal (16)</option>
+        </select>
+      </div>
+    </div>
+    <button type="submit">Convert</button>
+    <div id="result"></div>
+  </form>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    $('swap').onclick = () => { [$('from').value, $('to').value] = [$('to').value, $('from').value]; };
+    $('form').onsubmit = async e => {
+      e.preventDefault();
+      const res = await fetch('/api/convert', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ value: $('value').value, from: $('from').value, to: $('to').value })
+      });
+      const data = await res.json();
+      $('result').className = res.ok ? '' : 'error';
+      $('result').textContent = res.ok ? data.result : data.error;
+    };
+  </script>
+</body>
+</html>

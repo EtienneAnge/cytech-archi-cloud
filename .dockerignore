@@ -1,0 +1,11 @@
+node_modules
+npm-debug.log*
+.git
+.gitignore
+.claude
+Dockerfile
+.dockerignore
+.venv
+loadtest
+__pycache__
+*.md
