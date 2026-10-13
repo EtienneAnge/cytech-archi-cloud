@@ -3,11 +3,7 @@ Sans Autoscaling :
 ```bash
 kubectl logs -l app=base-converter --prefix -f
 ```
-[pod/base-converter-deployment-7678d4fb47-zpxq7/base-converter] Converter running on http://localhost:3000
-[pod/base-converter-deployment-7678d4fb47-zjdjc/base-converter] Converter running on http://localhost:3000
-[pod/base-converter-deployment-7678d4fb47-zjdjc/base-converter] 2026-10-13T12:54:58.592Z GET /ready
-[pod/base-converter-deployment-b6fbc4948-kq4qk/base-converter] Converter running on http://localhost:3000
-[pod/base-converter-deployment-b6fbc4948-82x55/base-converter] Converter running on http://localhost:3000
+
 [pod/base-converter-deployment-7678d4fb47-zjdjc/base-converter] 2026-10-13T12:55:03.583Z GET /ready
 [pod/base-converter-deployment-7678d4fb47-zpxq7/base-converter] 2026-10-13T12:55:06.631Z GET /ready
 [pod/base-converter-deployment-7678d4fb47-zjdjc/base-converter] 2026-10-13T12:55:08.464Z GET /live
@@ -15,20 +11,7 @@ kubectl logs -l app=base-converter --prefix -f
 [pod/base-converter-deployment-7678d4fb47-zpxq7/base-converter] 2026-10-13T12:55:11.621Z GET /ready
 [pod/base-converter-deployment-7678d4fb47-zjdjc/base-converter] 2026-10-13T12:55:13.583Z GET /ready
 [pod/base-converter-deployment-7678d4fb47-zpxq7/base-converter] 2026-10-13T12:55:16.621Z GET /ready
-[pod/base-converter-deployment-7678d4fb47-zjdjc/base-converter] 2026-10-13T12:55:18.463Z GET /live
-[pod/base-converter-deployment-7678d4fb47-zjdjc/base-converter] 2026-10-13T12:55:18.583Z GET /ready
-[pod/base-converter-deployment-7678d4fb47-zpxq7/base-converter] 2026-10-13T12:55:19.164Z GET /live
-[pod/base-converter-deployment-7678d4fb47-zpxq7/base-converter] 2026-10-13T12:55:21.621Z GET /ready
-[pod/base-converter-deployment-7678d4fb47-zjdjc/base-converter] 2026-10-13T12:55:23.582Z GET /ready
-[pod/base-converter-deployment-7678d4fb47-zpxq7/base-converter] 2026-10-13T12:55:26.621Z GET /ready
-[pod/base-converter-deployment-7678d4fb47-zjdjc/base-converter] 2026-10-13T12:55:28.467Z GET /live
-[pod/base-converter-deployment-7678d4fb47-zjdjc/base-converter] 2026-10-13T12:55:28.582Z GET /ready
-[pod/base-converter-deployment-7678d4fb47-zpxq7/base-converter] 2026-10-13T12:55:29.164Z GET /live
-[pod/base-converter-deployment-7678d4fb47-zpxq7/base-converter] 2026-10-13T12:55:31.621Z GET /ready
-[pod/base-converter-deployment-7678d4fb47-zjdjc/base-converter] 2026-10-13T12:55:33.582Z GET /ready
-[pod/base-converter-deployment-7678d4fb47-zpxq7/base-converter] 2026-10-13T12:55:36.623Z GET /ready
-[pod/base-converter-deployment-7678d4fb47-zjdjc/base-converter] 2026-10-13T12:55:38.464Z GET /live
-[pod/base-converter-deployment-7678d4fb47-zjdjc/base-converter] 2026-10-13T12:55:38.582Z GET /ready
+
 ![Charts avant l'autoscaling](docs/rapport/number_of_users_1791902715.959.png)
 
 
