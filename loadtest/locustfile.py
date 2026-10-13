@@ -2,10 +2,14 @@
 
 Target host is set with --host (or LOCUST_HOST), so the same file works
 against local node, a Docker container, or a Kubernetes Service/Ingress.
+
+Scenarios:
+  - ConverterUser : realistic traffic (mixed endpoints, think time)
+  - StressUser    : CPU-bound traffic on /heavy, used to trigger the HPA
 """
 import random
 
-from locust import HttpUser, between, task
+from locust import HttpUser, between, constant, task
 
 
 def random_case():
@@ -42,3 +46,11 @@ class ConverterUser(HttpUser):
                 r.success()
             else:
                 r.failure(f"expected 400, got {r.status_code}")
+
+
+class StressUser(HttpUser):
+    wait_time = constant(0)   # no think time: maximum pressure
+
+    @task
+    def heavy(self):
+        self.client.get("/heavy", name="GET /heavy")
